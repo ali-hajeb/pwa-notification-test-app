@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { openDB } from "idb";
+import PWABadge from "./PWABadge";
 
 interface Medication {
     id?: number;
@@ -13,6 +14,10 @@ const Home: React.FC = () => {
     const [name, setName] = useState("");
     const [interval, setInterval] = useState(0);
     const [startTime, setStartTime] = useState(new Date());
+
+    useEffect(() => {
+        Notification.requestPermission();
+    }, []);
 
     const addMedication = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -80,6 +85,7 @@ const Home: React.FC = () => {
     // Render form to input medication details and list of scheduled medications
     return (
         <div>
+          <PWABadge />
             <form onSubmit={addMedication}>
                 <input
                     type='text'
