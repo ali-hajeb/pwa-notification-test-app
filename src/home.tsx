@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { openDB } from "idb";
 import PWABadge from "./PWABadge";
+import './App.css'
 import './home.css'
 
 interface Medication {
