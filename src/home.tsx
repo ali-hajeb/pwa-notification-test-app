@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { openDB } from "idb";
 import PWABadge from "./PWABadge";
+import './home.css'
 
 interface Medication {
     id?: number;
@@ -84,29 +85,36 @@ const Home: React.FC = () => {
 
     // Render form to input medication details and list of scheduled medications
     return (
-        <div>
-          <PWABadge />
+        <div className="main">
+            <PWABadge />
             <form onSubmit={addMedication}>
-                <input
-                    type='text'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder='Medication Name'
-                    required
-                />
-                <input
-                    type='number'
-                    value={interval}
-                    onChange={(e) => setInterval(Number(e.target.value))}
-                    placeholder='Interval (minutes)'
-                    required
-                />
-                <input
-                    type='datetime-local'
-                    value={startTime.toISOString().slice(0, 16)}
-                    onChange={(e) => setStartTime(new Date(e.target.value))}
-                    required
-                />
+                <div>
+                    <input
+                        type='text'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder='Medication Name'
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type='number'
+                        value={interval}
+                        onChange={(e) => setInterval(Number(e.target.value))}
+                        placeholder='Interval (minutes)'
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type='datetime-local'
+                        value={startTime.toISOString().slice(0, 16)}
+                        onChange={(e) => setStartTime(new Date(e.target.value))}
+                        required
+                    />
+                </div>
+
                 <button type='submit'>Add Medication</button>
             </form>
             <ul>
